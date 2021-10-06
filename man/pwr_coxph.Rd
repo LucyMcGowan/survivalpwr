@@ -36,18 +36,8 @@ regression model (Default = 0)}
 "two.sided" (Default), "greater", or "less"}
 }
 \value{
-Object of class "\code{power.htest}", a list containing:
-\itemize{
-\item \code{n}: The total sample size needed
-\item \code{nevents}: The total number of events needed (equal to \code{eventprob} x \code{n})
-\item \code{hr}: The Hazard Ratio
-\item \code{eventprob}: The probability that an uncensored event occurs
-\item \code{rsquare}: The percent variation in the predictor of interest explained by
-other covariates
-\item \code{sig_level}: The signficance level
-\item \code{power}: The power of the test
-\item \code{alternative}: The alternative hypothesis of the test
-}
+Object of class "\code{power.htest}", a list containing the parameters specified
+as well as the one computed.
 }
 \description{
 Compute power of Cox proportional hazards model or determine parameters to

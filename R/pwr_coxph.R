@@ -20,16 +20,8 @@
 #' parameter is determined from the others.
 #'
 #' @return
-#' Object of class "`power.htest`", a list containing:
-#' * `n`: The total sample size needed
-#' * `nevents`: The total number of events needed (equal to `eventprob` x `n`)
-#' * `hr`: The Hazard Ratio
-#' * `eventprob`: The probability that an uncensored event occurs
-#' * `rsquare`: The percent variation in the predictor of interest explained by
-#'   other covariates
-#' * `sig_level`: The signficance level
-#' * `power`: The power of the test
-#' * `alternative`: The alternative hypothesis of the test
+#' Object of class "`power.htest`", a list containing the parameters specified
+#' as well as the one computed.
 #'
 #' @references
 #' Hsieh, FY, and Philip W Lavori. 2000. "Sample-Size Calculations for the
@@ -89,6 +81,7 @@ pwr_coxph <- function(hr = NULL, eventprob = NULL, n = NULL, rsquare = 0,
                  hr = hr,
                  eventprob = eventprob,
                  rsquare = rsquare,
+                 stddev = stddev,
                  sig_level = sig_level,
                  power = power, alternative = alternative,
                  method = "Cox Regression power calculation"),
