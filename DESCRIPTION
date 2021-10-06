@@ -1,0 +1,16 @@
+Package: survivalpwr
+Title: Power calculations for survival analyses
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Lucy",
+           family = "D'Agostino McGowan",
+           role = c("aut", "cre"),
+           email = "lucydagostino@gmail.com",
+           comment = c(ORCID = "0000-0001-7297-9359"))
+Description: Allows for sample size and power calculations for survival analyses.
+  Includes methods for Cox proportional hazards models.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
