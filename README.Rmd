@@ -42,8 +42,6 @@ library(survivalpwr)
 pwr_coxph(
   hr = 1.2,
   eventprob = 0.8,
-  rsquare = 0.2,
-  stddev = 1.2,
   n = 100)
 ```
 
@@ -53,8 +51,6 @@ Or alternatively, you can enter a target power to determine the sample size / nu
 pwr_coxph(
   hr = 1.5,
   eventprob = 0.8,
-  rsquare = 0.2,
-  stddev = 1.2,
   power = 0.8
 )
 ```
