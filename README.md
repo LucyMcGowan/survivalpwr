@@ -40,6 +40,7 @@ pwr_coxph(
 #>              hr = 1.2
 #>       eventprob = 0.8
 #>         rsquare = 0
+#>          stddev = 0.5
 #>       sig_level = 0.05
 #>           power = 0.1289453
 #>     alternative = two.sided
@@ -62,6 +63,7 @@ pwr_coxph(
 #>              hr = 1.5
 #>       eventprob = 0.8
 #>         rsquare = 0
+#>          stddev = 0.5
 #>       sig_level = 0.05
 #>           power = 0.8
 #>     alternative = two.sided
