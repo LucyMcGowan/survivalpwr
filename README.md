@@ -24,7 +24,9 @@ devtools::install_github("LucyMcGowan/survivalpwr")
 
 ## Example
 
-You can input parameters to compute power:
+You can input parameters to compute power, for example here is a study
+with a hazard ratio of 1.2, an event probability of 0.8, and 100
+observations:
 
 ``` r
 library(survivalpwr)
@@ -45,6 +47,9 @@ pwr_coxph(
 #>           power = 0.1289453
 #>     alternative = two.sided
 ```
+
+This indicates that this study is 41% powered to detect a hazard ratio
+of 1.2 with a two-sided test with a significance level of 0.05.
 
 Or alternatively, you can enter a target power to determine the sample
 size / number of events needed to obtain that power:
@@ -68,3 +73,38 @@ pwr_coxph(
 #>           power = 0.8
 #>     alternative = two.sided
 ```
+
+This indicates that you would need 52 observations with an event
+probability of 0.8 (or alternatively 41 events total) to be 80% powered
+to detect a hazard ratio of 1.5 with a two-sided test with a
+significance level of 0.05.
+
+This function also has the ability to incorporate r-squared if you Cox
+regression model is expected to have covariates that are explain some
+variation in the predictor of interest. For example, if you want to
+adjust for covariates that explain 15% of the variation in the predictor
+of interest:
+
+``` r
+pwr_coxph(
+  hr = 1.5,
+  eventprob = 0.8,
+  power = 0.8,
+  rsquare = 0.15
+)
+#> 
+#>      Cox Regression power calculation 
+#> 
+#>               n = 280.8347
+#>         nevents = 224.6677
+#>              hr = 1.5
+#>       eventprob = 0.8
+#>         rsquare = 0.15
+#>          stddev = 0.5
+#>       sig_level = 0.05
+#>           power = 0.8
+#>     alternative = two.sided
+```
+
+You would now need 281 observations with an event probability of 0.8 (or
+225 events).
