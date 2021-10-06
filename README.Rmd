@@ -1,0 +1,61 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# survivalpwr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of survivalpwr is to calculate power / sample size for survival models.
+
+## Installation
+
+<!-- You can install the released version of survivalpwr from [CRAN](https://CRAN.R-project.org) with: -->
+
+<!-- ``` r -->
+<!-- install.packages("survivalpwr") -->
+<!-- ``` -->
+
+You can install the development version of survivalpwr with:
+``` r
+devtools::install_github("LucyMcGowan/survivalpwr")
+```
+
+## Example
+
+You can input parameters to compute power:
+
+```{r example}
+library(survivalpwr)
+pwr_coxph(
+  hr = 1.2,
+  eventprob = 0.8,
+  rsquare = 0.2,
+  stddev = 1.2,
+  n = 100)
+```
+
+Or alternatively, you can enter a target power to determine the sample size / number of events needed to obtain that power:
+
+```{r}
+pwr_coxph(
+  hr = 1.5,
+  eventprob = 0.8,
+  rsquare = 0.2,
+  stddev = 1.2,
+  power = 0.8
+)
+```
+
