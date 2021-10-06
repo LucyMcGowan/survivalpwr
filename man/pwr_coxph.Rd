@@ -7,9 +7,9 @@
 pwr_coxph(
   hr = NULL,
   eventprob = NULL,
-  rsquare = NULL,
-  stddev = NULL,
   n = NULL,
+  rsquare = 0,
+  stddev = 0.5,
   sig_level = 0.05,
   power = NULL,
   alternative = c("two.sided", "less", "greater")
@@ -20,15 +20,15 @@ pwr_coxph(
 
 \item{eventprob}{Probability that an uncensored event occurs}
 
-\item{rsquare}{The percent of variation in the predictor of interest
-explained by other covariates expected to be adjusted for in the Cox
-regression model}
-
-\item{stddev}{Standard deviation of the predictor of interest}
-
 \item{n}{Sample size}
 
-\item{sig_level}{Significance level. Default = 0.05}
+\item{rsquare}{The percent of variation in the predictor of interest
+explained by other covariates expected to be adjusted for in the Cox
+regression model (Default = 0)}
+
+\item{stddev}{Standard deviation of the predictor of interest (Default = 0.5)}
+
+\item{sig_level}{Significance level. (Default = 0.05)}
 
 \item{power}{Power of the test}
 
@@ -36,12 +36,14 @@ regression model}
 "two.sided" (Default), "greater", or "less"}
 }
 \value{
-A list containing:
+Object of class "\code{power.htest}", a list containing:
 \itemize{
+\item \code{n}: The total sample size needed
+\item \code{nevents}: The total number of events needed (equal to \code{eventprob} x \code{n})
 \item \code{hr}: The Hazard Ratio
 \item \code{eventprob}: The probability that an uncensored event occurs
-\item \code{nevents}: The total number of events needed (equal to \code{eventprob} x \code{n})
-\item \code{n}: The total sample size needed
+\item \code{rsquare}: The percent variation in the predictor of interest explained by
+other covariates
 \item \code{sig_level}: The signficance level
 \item \code{power}: The power of the test
 \item \code{alternative}: The alternative hypothesis of the test
@@ -57,10 +59,10 @@ parameter is determined from the others.
 }
 \examples{
 ## specify n to output the power
-pwr_coxph(1.5, 0.8, 0.2, 1.1, n = 80)
+pwr_coxph(1.5, 0.8,  n = 80)
 
 ## specify power to output the sample size
-pwr_coxph(1.5, 0.8, 0.2, 1.1, power = 0.8)
+pwr_coxph(1.5, 0.8, power = 0.8)
 }
 \references{
 Hsieh, FY, and Philip W Lavori. 2000. "Sample-Size Calculations for the

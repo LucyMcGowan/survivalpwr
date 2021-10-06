@@ -5,12 +5,12 @@
 #'
 #' @param hr Hazard ratio for a one unit increase in the predictor of interest
 #' @param eventprob Probability that an uncensored event occurs
+#' @param n Sample size
 #' @param rsquare The percent of variation in the predictor of interest
 #'   explained by other covariates expected to be adjusted for in the Cox
-#'   regression model
-#' @param stddev Standard deviation of the predictor of interest
-#' @param n Sample size
-#' @param sig_level Significance level. Default = 0.05
+#'   regression model (Default = 0)
+#' @param stddev Standard deviation of the predictor of interest (Default = 0.5)
+#' @param sig_level Significance level. (Default = 0.05)
 #' @param power Power of the test
 #' @param alternative Character. The alternative hypothesis of the test. Must be
 #'   "two.sided" (Default), "greater", or "less"
@@ -20,11 +20,13 @@
 #' parameter is determined from the others.
 #'
 #' @return
-#' A list containing:
+#' Object of class "`power.htest`", a list containing:
+#' * `n`: The total sample size needed
+#' * `nevents`: The total number of events needed (equal to `eventprob` x `n`)
 #' * `hr`: The Hazard Ratio
 #' * `eventprob`: The probability that an uncensored event occurs
-#' * `nevents`: The total number of events needed (equal to `eventprob` x `n`)
-#' * `n`: The total sample size needed
+#' * `rsquare`: The percent variation in the predictor of interest explained by
+#'   other covariates
 #' * `sig_level`: The signficance level
 #' * `power`: The power of the test
 #' * `alternative`: The alternative hypothesis of the test
@@ -44,13 +46,13 @@
 #'
 #' @examples
 #' ## specify n to output the power
-#' pwr_coxph(1.5, 0.8, 0.2, 1.1, n = 80)
+#' pwr_coxph(1.5, 0.8,  n = 80)
 #'
 #' ## specify power to output the sample size
-#' pwr_coxph(1.5, 0.8, 0.2, 1.1, power = 0.8)
+#' pwr_coxph(1.5, 0.8, power = 0.8)
 
-pwr_coxph <- function(hr = NULL, eventprob = NULL, rsquare = NULL,
-                      stddev = NULL, n = NULL, sig_level = 0.05, power = NULL,
+pwr_coxph <- function(hr = NULL, eventprob = NULL, n = NULL, rsquare = 0,
+                      stddev = 0.5, sig_level = 0.05, power = NULL,
                       alternative = c("two.sided", "less", "greater")) {
 
   if (sum(sapply(list(power, n), is.null)) != 1) {
@@ -82,9 +84,15 @@ pwr_coxph <- function(hr = NULL, eventprob = NULL, rsquare = NULL,
       } - power, c(2, 1e+09))$root
     }
   }
-  return(list(hr = hr, eventprob = eventprob, nevents = n * eventprob,
-              n = n, sig_level = sig_level,
-              power = power, alternative = alternative))
+  structure(list(n = n,
+                 nevents = n * eventprob,
+                 hr = hr,
+                 eventprob = eventprob,
+                 rsquare = rsquare,
+                 sig_level = sig_level,
+                 power = power, alternative = alternative,
+                 method = "Cox Regression power calculation"),
+            class = "power.htest")
 }
 
 get_power <- function(hr, eventprob, rsquare, stddev, n, sig_level) {
