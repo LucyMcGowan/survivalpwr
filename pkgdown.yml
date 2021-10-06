@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-10-06T22:07Z
+last_built: 2021-10-06T23:01Z
 urls:
   reference: https://lucymcgowan.github.io/survivalpwr/reference
   article: https://lucymcgowan.github.io/survivalpwr/articles

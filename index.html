@@ -80,26 +80,26 @@
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>You can input parameters to compute power, for example here is a study with a hazard ratio of 1.2, an event probability of 0.8, and 100 observations:</p>
+<p>You can input parameters to compute power, for example here is a study with a hazard ratio of 1.2, an event probability of 0.8, and 200 participants:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lucymcgowan.github.io/survivalpwr">survivalpwr</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/pwr_coxph.html">pwr_coxph</a></span><span class="op">(</span>
   hr <span class="op">=</span> <span class="fl">1.2</span>,
   eventprob <span class="op">=</span> <span class="fl">0.8</span>,
-  n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
+  n <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;      Cox Regression power calculation </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;               n = 100</span>
-<span class="co">#&gt;         nevents = 80</span>
+<span class="co">#&gt;               n = 200</span>
+<span class="co">#&gt;         nevents = 160</span>
 <span class="co">#&gt;              hr = 1.2</span>
 <span class="co">#&gt;       eventprob = 0.8</span>
 <span class="co">#&gt;         rsquare = 0</span>
 <span class="co">#&gt;          stddev = 0.5</span>
 <span class="co">#&gt;       sig_level = 0.05</span>
-<span class="co">#&gt;           power = 0.1289453</span>
+<span class="co">#&gt;           power = 0.210799</span>
 <span class="co">#&gt;     alternative = two.sided</span></code></pre></div>
-<p>This indicates that this study is 41% powered to detect a hazard ratio of 1.2 with a two-sided test with a significance level of 0.05.</p>
+<p>This indicates that this study is 12.9% powered to detect a hazard ratio of 1.2 with a two-sided test with a significance level of 0.05.</p>
 <p>Or alternatively, you can enter a target power to determine the sample size / number of events needed to obtain that power:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pwr_coxph.html">pwr_coxph</a></span><span class="op">(</span>
@@ -119,7 +119,7 @@
 <span class="co">#&gt;       sig_level = 0.05</span>
 <span class="co">#&gt;           power = 0.8</span>
 <span class="co">#&gt;     alternative = two.sided</span></code></pre></div>
-<p>This indicates that you would need 52 observations with an event probability of 0.8 (or alternatively 41 events total) to be 80% powered to detect a hazard ratio of 1.5 with a two-sided test with a significance level of 0.05.</p>
+<p>This indicates that you would need 239 observations with an event probability of 0.8 (or alternatively 191 events total) to be 80% powered to detect a hazard ratio of 1.5 with a two-sided test with a significance level of 0.05.</p>
 <p>This function also has the ability to incorporate r-squared if you Cox regression model is expected to have covariates that are explain some variation in the predictor of interest. For example, if you want to adjust for covariates that explain 15% of the variation in the predictor of interest:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pwr_coxph.html">pwr_coxph</a></span><span class="op">(</span>
