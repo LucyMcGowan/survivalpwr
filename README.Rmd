@@ -35,17 +35,17 @@ devtools::install_github("LucyMcGowan/survivalpwr")
 
 ## Example
 
-You can input parameters to compute power, for example here is a study with a hazard ratio of 1.2, an event probability of 0.8, and 200 participants:
+You can input parameters to compute power, for example here is a study with a hazard ratio of 1.5, an event probability of 0.8, and 200 participants:
 
 ```{r example}
 library(survivalpwr)
 pwr_coxph(
-  hr = 1.2,
+  hr = 1.5,
   eventprob = 0.8,
   n = 200)
 ```
 
-This indicates that this study is 12.9% powered to detect a hazard ratio of 1.2 with a two-sided test with a significance level of 0.05.
+This indicates that this study is 72.7% powered to detect a hazard ratio of 1.5 with a two-sided test with a significance level of 0.05.
 
 Or alternatively, you can enter a target power to determine the sample size / number of events needed to obtain that power:
 
